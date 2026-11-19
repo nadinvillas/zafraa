@@ -1,0 +1,760 @@
+
+/* =========================
+   GENERAL SETTINGS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f9e7ec;
+    color: #684b54;
+}
+
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+}
+
+#cover {
+    display: flex;
+}
+
+.screen:target {
+    display: flex;
+}
+
+body:has(.screen:target:not(#cover)) #cover {
+    display: none;
+}
+
+
+/* =========================
+   BIRTHDAY COVER
+========================= */
+
+.cover-page {
+    min-height: 100vh;
+    padding: 45px 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 20% 20%, #fff8fa, transparent 35%),
+        linear-gradient(135deg, #f8dce5, #f5cbd8, #fcebf0);
+}
+
+.cover-frame {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    padding: 22px;
+
+    background: #eabacb;
+    border: 1px solid rgba(255,255,255,0.8);
+
+    box-shadow: 0 20px 60px rgba(133, 75, 95, 0.2);
+}
+
+.cover-frame::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1px solid rgba(255,255,255,0.7);
+    pointer-events: none;
+}
+
+.cover-top {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: white;
+
+    position: relative;
+    z-index: 2;
+}
+
+.magazine-title {
+    text-align: center;
+
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(65px, 14vw, 125px);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -6px;
+
+    color: #fffdfd;
+
+    margin: 15px 0 5px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.cover-subtitle {
+    text-align: center;
+
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: white;
+
+    margin-bottom: 17px;
+}
+
+.cover-photo {
+    height: 480px;
+    position: relative;
+    overflow: hidden;
+    background: #e8b8c8;
+}
+
+.cover-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.photo-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(70, 36, 48, 0.48),
+        transparent 65%
+    );
+}
+
+.cover-photo-text {
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.cover-photo-text span {
+    font-size: 16px;
+    letter-spacing: 5px;
+}
+
+.cover-photo-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 70px;
+    line-height: 0.85;
+    font-weight: 500;
+}
+
+.cover-photo-text p {
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-top: 12px;
+}
+
+.cover-side-text {
+    position: absolute;
+    right: 25px;
+    top: 44%;
+
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    line-height: 1.5;
+
+    z-index: 3;
+}
+
+.cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 17px 5px 12px;
+    color: white;
+}
+
+.cover-bottom p {
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.cover-bottom h2 {
+    font-family: 'Italianno', cursive;
+    font-size: 46px;
+    font-weight: normal;
+    line-height: 1;
+}
+
+.cover-bottom span {
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.barcode {
+    text-align: center;
+}
+
+.barcode-lines {
+    width: 75px;
+    height: 35px;
+
+    background: repeating-linear-gradient(
+        90deg,
+        white 0px,
+        white 2px,
+        transparent 2px,
+        transparent 4px,
+        white 4px,
+        white 5px,
+        transparent 5px,
+        transparent 8px
+    );
+}
+
+.barcode small {
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.cover-footer {
+    display: flex;
+    justify-content: space-between;
+
+    border-top: 1px solid rgba(255,255,255,0.5);
+    padding-top: 10px;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.open-button {
+    margin-top: 28px;
+    padding: 15px 35px;
+
+    background: #fffafa;
+    color: #a35f77;
+
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    border: 1px solid #dba4b7;
+
+    transition: 0.3s;
+
+    box-shadow: 0 8px 20px rgba(130, 72, 91, 0.12);
+}
+
+.open-button span {
+    margin-left: 10px;
+}
+
+.open-button:hover {
+    background: #c77f99;
+    color: white;
+    transform: translateY(-4px);
+}
+
+.cover-note {
+    margin-top: 13px;
+
+    font-family: 'Italianno', cursive;
+    font-size: 25px;
+    color: #a76c80;
+}
+
+
+/* =========================
+   ONE COMPLETE PHOTO ALBUM
+========================= */
+
+.gallery-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 65px 7%;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at top left, #fff8fa, transparent 35%),
+        linear-gradient(135deg, #fff7f9, #f8e2e9, #fff8fa);
+}
+
+.album-decoration {
+    position: absolute;
+    top: 25px;
+    right: 8%;
+
+    font-size: 65px;
+    color: #dba7b8;
+    opacity: 0.5;
+}
+
+.gallery-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.gallery-heading > p {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #b37b8e;
+}
+
+.gallery-heading h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 7vw, 68px);
+
+    color: #9e6177;
+    font-weight: 500;
+
+    margin: 10px 0;
+}
+
+.gallery-heading span {
+    font-size: 13px;
+    color: #a77c89;
+}
+
+.heading-line {
+    margin-top: 20px;
+    color: #c98ba1;
+    font-size: 22px;
+}
+
+.album-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.album-intro p {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #b37b8e;
+}
+
+.album-intro h2 {
+    font-family: 'Italianno', cursive;
+    font-size: 55px;
+
+    color: #a9657e;
+    font-weight: normal;
+}
+
+.album-intro span {
+    font-size: 12px;
+    color: #a77c89;
+}
+
+
+/* 20 PHOTO GRID */
+
+.photo-grid {
+    width: 100%;
+    max-width: 1050px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 35px;
+}
+
+.photo-card {
+    background: white;
+
+    padding: 12px 12px 25px;
+
+    box-shadow: 0 8px 22px rgba(123, 76, 92, 0.12);
+
+    border: 1px solid #f0d7df;
+
+    transition: 0.35s;
+}
+
+.photo-card:nth-child(odd) {
+    transform: rotate(-2deg);
+}
+
+.photo-card:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.photo-card:hover {
+    transform: rotate(0deg) translateY(-8px) scale(1.03);
+
+    box-shadow: 0 15px 30px rgba(123, 76, 92, 0.2);
+
+    z-index: 2;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 280px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.photo-card p {
+    text-align: center;
+
+    font-family: 'Italianno', cursive;
+    font-size: 27px;
+
+    color: #a76b81;
+
+    margin-top: 12px;
+}
+
+.album-ending {
+    text-align: center;
+    margin: 65px 0 35px;
+}
+
+.album-ending p {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #b37b8e;
+}
+
+.album-ending h2 {
+    font-family: 'Italianno', cursive;
+    font-size: 55px;
+
+    color: #a9657e;
+    font-weight: normal;
+
+    margin: 8px 0;
+}
+
+.album-ending span {
+    font-size: 12px;
+    color: #a77c89;
+}
+
+
+/* ALBUM BUTTONS */
+
+.gallery-navigation,
+.letter-navigation {
+    display: flex;
+    justify-content: center;
+
+    gap: 15px;
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+}
+
+.back-button,
+.next-button {
+    padding: 13px 23px;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.back-button {
+    color: #a36b80;
+    border: 1px solid #d8a6b7;
+    background: transparent;
+}
+
+.next-button {
+    color: white;
+    background: #c7839b;
+    border: 1px solid #c7839b;
+}
+
+.back-button:hover {
+    background: #f0d5df;
+}
+
+.next-button:hover {
+    background: #a85f79;
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   BIRTHDAY LETTER
+========================= */
+
+.letter-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 65px 20px;
+
+    position: relative;
+
+    background:
+        radial-gradient(circle at 20% 20%, #fff9fa, transparent 30%),
+        linear-gradient(135deg, #f8e0e8, #fbeef2, #f3d6e0);
+}
+
+.letter-decoration {
+    position: absolute;
+    top: 30px;
+    right: 10%;
+
+    font-size: 65px;
+    color: #d6a0b1;
+    opacity: 0.5;
+}
+
+.letter-container {
+    width: 100%;
+    max-width: 700px;
+
+    padding: 60px 65px;
+
+    background: #fffdfb;
+
+    border: 1px solid #e8c6d1;
+    outline: 1px solid #e8c6d1;
+    outline-offset: 8px;
+
+    box-shadow: 0 15px 45px rgba(131, 78, 96, 0.12);
+}
+
+.letter-top {
+    text-align: center;
+
+    font-size: 9px;
+    letter-spacing: 4px;
+
+    color: #b77d90;
+}
+
+.letter-container h1 {
+    text-align: center;
+
+    font-family: 'Italianno', cursive;
+    font-size: 75px;
+    font-weight: normal;
+
+    color: #a9657e;
+
+    margin-top: 20px;
+}
+
+.letter-divider {
+    text-align: center;
+
+    font-size: 22px;
+    color: #d49aaf;
+
+    margin: 10px 0 35px;
+}
+
+.letter-content {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 19px;
+    line-height: 1.9;
+
+    color: #765a64;
+}
+
+.letter-content p {
+    margin-bottom: 20px;
+}
+
+.letter-last {
+    color: #a9657e;
+    font-weight: 600;
+}
+
+.letter-signature {
+    margin-top: 35px;
+    text-align: right;
+}
+
+.letter-signature span {
+    font-family: 'Italianno', cursive;
+    font-size: 27px;
+    color: #a77c89;
+}
+
+.letter-signature h2 {
+    font-family: 'Italianno', cursive;
+    font-size: 40px;
+
+    color: #a9657e;
+    font-weight: normal;
+}
+
+.letter-bottom {
+    border-top: 1px solid #eedce2;
+
+    margin-top: 40px;
+    padding-top: 15px;
+
+    text-align: center;
+
+    font-size: 8px;
+    letter-spacing: 3px;
+
+    color: #b77d90;
+}
+
+
+/* =========================
+   TABLET RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .cover-page {
+        padding: 25px 12px;
+    }
+
+    .cover-frame {
+        padding: 15px;
+    }
+
+    .magazine-title {
+        font-size: clamp(52px, 14vw, 85px);
+        letter-spacing: -3px;
+    }
+
+    .cover-photo {
+        height: 390px;
+    }
+
+    .cover-photo-text h2 {
+        font-size: 55px;
+    }
+
+    .cover-side-text {
+        font-size: 12px;
+        right: 17px;
+    }
+
+    .cover-bottom h2 {
+        font-size: 37px;
+    }
+
+    .cover-footer {
+        font-size: 7px;
+    }
+
+    .gallery-page {
+        padding: 55px 6%;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+    .photo-card img {
+        height: 220px;
+    }
+
+    .letter-container {
+        padding: 40px 28px;
+    }
+
+    .letter-content {
+        font-size: 17px;
+    }
+
+    .letter-container h1 {
+        font-size: 62px;
+    }
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 420px) {
+
+    .cover-photo {
+        height: 330px;
+    }
+
+    .cover-top {
+        font-size: 7px;
+    }
+
+    .cover-subtitle {
+        font-size: 7px;
+        letter-spacing: 2px;
+    }
+
+    .cover-side-text {
+        font-size: 10px;
+    }
+
+    .photo-grid {
+        gap: 15px;
+    }
+
+    .photo-card {
+        padding: 8px 8px 18px;
+    }
+
+    .photo-card img {
+        height: 165px;
+    }
+
+    .photo-card p {
+        font-size: 22px;
+    }
+
+    .back-button,
+    .next-button {
+        padding: 12px 14px;
+        font-size: 8px;
+    }
+
+    .letter-container {
+        padding: 35px 22px;
+    }
+
+    .letter-content {
+        font-size: 16px;
+    }
+}
+
+  
